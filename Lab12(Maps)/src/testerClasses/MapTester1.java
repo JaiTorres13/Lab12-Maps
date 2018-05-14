@@ -47,6 +47,13 @@ public class MapTester1 {
 		
 		
 		showMapEntries("Entries in the map (visiting nodes in inorder)", map); 
+		
+		//testing the keySet() & values() methods
+		showMapKeys("Keys from each Entry", map);
+		showMapValues("Values from each Entry", map);
+		
+		
+	
 	}
 	
 	private static void mapInsert(int key, String value, BSTMap<Integer, String> map) { 

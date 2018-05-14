@@ -84,21 +84,11 @@ public class BSTMap<K, V> implements Map<K, V> {
 		// ADD Necessary code to complete this method by properly 
 		// invoking operations from the BSTLinkedBinaryTree, applying 
 		// them to instance field tree.... EXERCISE 1
-//		Position<Entry<K, V>> result = tree.getPosition( new MapEntry<>(key, null)); 
-//		if(result  == key) {
-//			V temp = result.getElement().getValue();
-//		    result.setElement(new MapEntry<>(key, value));
-//			return temp;
-//		}
-//		else {
-//		tree.addElement( new MapEntry<>(key, value));
-//		return null;    // for the moment...
-//		}
 		if(get(key) == null) {
 			tree.addElement(new MapEntry<>(key, value));
 			return null;   
 		}
-		Position<Entry<K, V>> result = tree.getPosition( new MapEntry<>(key, null)); 
+		Position<Entry<K, V>> result = tree.getPosition( new MapEntry<>(key, get(key))); 
 		V temp = result.getElement().getValue();
 	    result.setElement(new MapEntry<>(key, value));
 		return temp;	
@@ -115,8 +105,9 @@ public class BSTMap<K, V> implements Map<K, V> {
 		// invoking operations from the BSTLinkedBinaryTree, appying 
 		// them to instance field tree.... EXERCISE 1
 		//...
+		if(get(key) != null)
 		 return tree.removeElement(new MapEntry<>(key,null)).getValue();
-//		return null;    // for the moment...
+		return null;
 	}
 
 
@@ -127,7 +118,12 @@ public class BSTMap<K, V> implements Map<K, V> {
 		// them to instance field tree.... In this case you will need another
 		// inner class......   EXERCISE 2
 		//...
-		return null;    // for the moment...
+		ArrayList<K> eList = new ArrayList<>(); 
+
+		for (Position<Entry<K, V>> p : tree.positions())
+			eList.add(p.getElement().getKey()); 
+
+		return eList;
 	}
 
 
@@ -138,7 +134,12 @@ public class BSTMap<K, V> implements Map<K, V> {
 		// them to instance field tree.... In this case you will need another
 		// inner class......  EXERCISE 2
 		//...
-		return null;    // for the moment...
+		ArrayList<V> eList = new ArrayList<>(); 
+
+		for (Position<Entry<K, V>> p : tree.positions())
+			eList.add(p.getElement().getValue()); 
+
+		return eList;
 	}
 
 	@Override
